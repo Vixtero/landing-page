@@ -6,11 +6,11 @@ const nextConfig = {
   // Add this line:
   basePath: '/landing-page', // Match your repository name
 
-  // Configure images for static export
-  images: {
-    loader: 'akamai',
-    path: '',
-  },
+  // // Configure images for static export
+  // images: {
+  //   loader: 'akamai',
+  //   path: '',
+  // },
 };
 
 module.exports = nextConfig;
