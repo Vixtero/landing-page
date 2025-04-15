@@ -67,7 +67,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <motion.div /* ... (no changes needed for Image logo) ... */ >
+          <motion.div>
              <Link href="#" className="flex items-center space-x-2">
                <Image
                  src="/logo.png"
@@ -91,19 +91,17 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  // Apply dynamic text color class here
                   className={`relative px-4 py-2 text-base font-medium ${textColorClass} ${hoverTextColorClass} transition-colors duration-200 group`}
                 >
                   <span className="relative z-10">{item.name}</span>
-                  {/* Hover effects (check if they need adjustment based on color) */}
-                  <motion.div /* ... bg gradient ... */
+                  <motion.div
                      className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#4672bc]/5 to-[#59e9d7]/5"
                      initial={{ scale: 0, opacity: 0 }}
                      whileHover={{ scale: 1, opacity: 1 }}
                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
-                  <motion.div /* ... underline ... */
-                     className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r ${isScrolled ? 'from-[#4672bc] to-[#59e9d7]' : 'from-white/50 to-white/90'} shadow-[0_0_10px_rgba(89,233,215,0.5)]`} // Optional: Adjust underline color too
+                  <motion.div
+                     className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r ${isScrolled ? 'from-[#4672bc] to-[#59e9d7]' : 'from-white/50 to-white/90'} shadow-[0_0_10px_rgba(89,233,215,0.5)]`}
                      initial={{ width: "0%" }}
                      whileHover={{ width: "100%" }}
                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
@@ -115,8 +113,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            // Adjust hover background potentially based on state
-            className={`md:hidden relative z-10 p-2 rounded-lg ${isScrolled ? 'hover:bg-gray-100/50' : 'hover:bg-white/10'} transition-colors duration-200`}
+            className={`md:hidden relative z-50 p-2 rounded-lg ${isScrolled ? 'hover:bg-gray-100/50' : 'hover:bg-white/10'} transition-colors duration-200`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0 }}
@@ -124,32 +121,31 @@ export default function Header() {
             transition={{ delay: 0.4 }}
           >
             <div className="w-7 h-7 flex items-center justify-center">
-              <motion.div
+              <motion.div 
                 className="flex flex-col justify-between w-5 h-4"
                 animate={mobileMenuOpen ? "open" : "closed"}
               >
-                {/* Apply dynamic background color to spans */}
                 <motion.span
-                  className={`w-full h-0.5 block ${mobileIconBgClass}`} // <-- Use dynamic class
+                  className={`w-full h-0.5 block ${isScrolled ? 'bg-gray-600' : 'bg-white'}`}
                   variants={{
                     closed: { rotate: 0, y: 0 },
-                    open: { rotate: 45, y: 5, backgroundColor: '#374151' } // Keep gray when open
+                    open: { rotate: 45, y: 5, backgroundColor: '#374151' }
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
                 <motion.span
-                  className={`w-full h-0.5 block ${mobileIconBgClass}`} // <-- Use dynamic class
+                  className={`w-full h-0.5 block ${isScrolled ? 'bg-gray-600' : 'bg-white'}`}
                   variants={{
                     closed: { opacity: 1 },
                     open: { opacity: 0 }
                   }}
-                  transition={{ duration: 0.1 }} // Faster opacity transition
+                  transition={{ duration: 0.1 }}
                 />
                 <motion.span
-                  className={`w-full h-0.5 block ${mobileIconBgClass}`} // <-- Use dynamic class
+                  className={`w-full h-0.5 block ${isScrolled ? 'bg-gray-600' : 'bg-white'}`}
                   variants={{
                     closed: { rotate: 0, y: 0 },
-                    open: { rotate: -45, y: -5, backgroundColor: '#374151' } // Keep gray when open
+                    open: { rotate: -45, y: -5, backgroundColor: '#374151' }
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
@@ -158,11 +154,36 @@ export default function Header() {
           </motion.button>
         </div>
 
-        {/* Mobile Navigation Menu (likely doesn't need color changes as it has its own background) */}
+        {/* Mobile Navigation Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div /* ... */ >
-               {/* ... Mobile nav items ... */}
+            <motion.div 
+              className="md:hidden fixed inset-0 bg-white/95 backdrop-blur-md shadow-lg z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="pt-24 pb-6 px-4 h-full overflow-y-auto">
+                <div className="flex flex-col space-y-4">
+                  {navItems.map((item, i) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05, type: "spring", stiffness: 100 }}
+                    >
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-3 text-lg font-medium text-gray-700 hover:text-[#4672bc] hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
