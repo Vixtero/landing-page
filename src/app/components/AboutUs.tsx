@@ -83,10 +83,7 @@ export default function AboutUs() {
             className="max-w-3xl mx-auto p-8 rounded-lg border border-white/50 shadow-lg backdrop-blur-sm bg-gradient-to-br from-white/80 via-white/75 to-white/70"
           >
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify">
-              At <strong>VIXTERO (PT Vixtero Pintar Nusantara)</strong>, we bridge the complexities of global commerce.
-              Our intelligent platform, leveraging <strong>advanced AI</strong> with <strong>95%</strong> document
-              processing accuracy, connects key players across the supply chain. We empower industry leaders to navigate
-              international trade with <strong>unprecedented efficiency</strong> and <strong>confidence</strong>.
+            At <strong>VIXTERO (PT Vixtero Pintar Nusantara)</strong>, we deliver sophisticated services that strengthen both international and domestic trade through seamless integration. Our Vix Trade Portal empowers businesses to overcome trade barriers with precision, backed by comprehensive banking, financing, and insurance solutions. Understanding global economic fluctuations, we prepare surplus capacity during booms while maintaining agility to optimize resources during downturns, ensuring businesses not only survive but thrive in any market condition.
             </p>
           </SpotlightCard>
         </motion.div>
