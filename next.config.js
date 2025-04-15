@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: '/landing-page', // Keep this correctly set
+  // basePath: '/landing-page', // Keep this correctly set
 
   // Configure images for static export
   images: {
