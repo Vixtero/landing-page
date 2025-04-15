@@ -15,6 +15,15 @@ export default function OurProducts() {
       ),
     },
     {
+      name: 'VIXBONDED',
+      description: 'Smart Customs for Bonded Zones',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
+    },
+    {
       name: 'VIXFREIGHT',
       description: 'Integrated logistics solution',
       icon: (
@@ -48,6 +57,15 @@ export default function OurProducts() {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+        </svg>
+      ),
+    },
+    {
+      name: 'VIXMARKET',
+      description: 'Sub portal buyer and supplier',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
     },
@@ -131,9 +149,9 @@ export default function OurProducts() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {/* Baris pertama: 4 card */}
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-            {products.slice(0, 4).map((product, index) => (
+          {/* Baris pertama: 5 card */}
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mb-8">
+            {products.slice(0, 5).map((product, index) => (
               <motion.div 
                 key={index}
                 variants={itemVariants}
@@ -161,12 +179,12 @@ export default function OurProducts() {
             ))}
           </motion.div>
 
-          {/* Baris kedua: 3 card rata tengah */}
+          {/* Baris kedua: 4 card rata tengah */}
           <motion.div className="flex justify-center mt-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full lg:w-[85%]">
-              {products.slice(4).map((product, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full lg:w-[90%]">
+              {products.slice(5).map((product, index) => (
                 <motion.div 
-                  key={index + 4}
+                  key={index + 5}
                   variants={itemVariants}
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.3 }}
@@ -174,13 +192,13 @@ export default function OurProducts() {
                 >
                   <SpotlightCard
                     className="h-full px-6 py-8 transform transition backdrop-blur-sm bg-gradient-to-br from-white/40 via-white/25 to-white/15 border-[1.5px] border-t-white/50 border-l-white/50 border-r-white/20 border-b-white/20 shadow-xl shadow-[#4672bc]/15 hover:shadow-[#59e9d7]/20"
-                    spotlightColor={spotlightColors[(index + 4) % spotlightColors.length]}
+                    spotlightColor={spotlightColors[(index + 5) % spotlightColors.length]}
                   >
                     <div className="flex flex-col items-center text-center h-full justify-center">
                       <div className="mb-3 transition-transform duration-300 transform hover:scale-110">
                         {product.icon}
                       </div>
-                      <h3 className={`text-xl font-bold text-gray-800 mb-2 ${product.name === 'VIXPROTEKSI' ? 'text-[1.1em]' : ''}`}>
+                      <h3 className="text-xl font-bold text-gray-800 mb-2">
                         {product.name}
                       </h3>
                       <p className="text-gray-600">
