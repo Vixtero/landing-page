@@ -138,13 +138,18 @@ const MapChart: React.FC = () => {
       easing: am5.ease.yoyo(am5.ease.linear),
     });
 
-    planeDataItem.on("positionOnLine", (value: number) => {
-      if ((planeDataItem.dataContext as any).prevPosition < value) {
-        plane.set("rotation", 0);
-      } else if ((planeDataItem.dataContext as any).prevPosition > value) {
-        plane.set("rotation", -180);
+    planeDataItem.on("positionOnLine", (value, target, key) => {
+      const dataContext = planeDataItem.dataContext as any;
+      const prevPosition = dataContext.prevPosition ?? 0;
+
+      if (typeof value === "number") {
+        if (prevPosition < value) {
+          plane.set("rotation", 0);
+        } else if (prevPosition > value) {
+          plane.set("rotation", -180);
+        }
+        dataContext.prevPosition = value;
       }
-      (planeDataItem.dataContext as any).prevPosition = value;
     });
 
     chart.appear(1000, 100);
