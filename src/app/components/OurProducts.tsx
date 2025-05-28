@@ -1,217 +1,357 @@
-'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
-import SpotlightCard from './SpotlightCard';
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Separator } from "@/components/ui/separator";
+import {
+  ChevronDown,
+  ScanLine,
+  ShieldCheck,
+  BarChart3,
+  FileText,
+  BadgeCheck,
+  FileChartColumn,
+} from "lucide-react";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function OurProducts() {
-  const products = [
+  return (
+    <section className="m-auto my-16 max-w-7xl">
+      <LatestProduct />
+      <OtherProducts />
+      {/* <section className="m-auto my-16 grid max-w-7xl grid-cols-[10%_80%_10%]">
+        <div className="border-[0.5px] border-l-0 border-t-0 border-[#F5F5F5]"></div>
+        <section className="border-[0.5px] border-t-0 border-[#F5F5F5]">
+          <div className="p-4 text-center">
+            <h1 className="text-3xl font-semibold text-[#01627F]">
+              Our Products
+            </h1>
+            <p className="text-balance text-lg text-[#666666]">
+              We offer a comprehensive suite of integrated solutions to enhance
+              your trade ecosystem
+            </p>
+          </div>
+        </section>
+        <div className="border-[0.5px] border-r-0 border-t-0 border-[#F5F5F5]"></div>
+        <CarouselDemo />
+      </section> */}
+    </section>
+  );
+}
+
+function CarouselDemo() {
+  const items = [
     {
-      name: 'VIXBORDER',
-      description: 'Customs integration platform',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-        </svg>
-      ),
+      id: 1,
+      name: "VIXBORDER",
+      desc: "VixBorder is an application that streamlines the Customs Clearance process by generating Goods Import and Export Notification documents, significantly reducing the risk of Customs penalties (NOTUL - Nota Pembetulan).",
+      logo: "/img/vixborder-logo.png",
+      img: "/img/vixborder-hero.png",
     },
     {
-      name: 'VIXBONDED',
-      description: 'Bonded Customs Facilities Compliance',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-      ),
+      id: 2,
+      name: "VIXADVIS",
+      desc: "VixAdvis is a platform that provides comprehensive information on Customs Tariffs, Import and Export Prohibitions, and Trade Regulations, ensuring compliance with the latest regulations.",
+      logo: "/img/vixborder-logo.png",
+      img: "/img/vixadvis-hero.png",
     },
     {
-      name: 'VIXFREIGHT',
-      description: 'Integrated logistics solution',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
-        </svg>
-      ),
+      id: 3,
+      name: "VIXBONDED",
+      desc: "VixBonded is a platform that simplifies the management of Bonded Zones, including the issuance of Import and Export Notification documents, ensuring compliance with Customs regulations.",
+      logo: "/img/vixborder-logo.png",
+      img: "/img/vixbonded-hero.png",
     },
     {
-      name: 'VIXTRADE',
-      description: 'Global-domestic trade application',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-        </svg>
-      ),
+      id: 4,
+      name: "VIXBANK",
+      desc: "VixBank is a platform that simplifies the management of Letter of Credit (L/C) and Bank Guarantee (BG) processes, ensuring compliance with banking regulations.",
+      logo: "/img/vixborder-logo.png",
+      img: "/img/vixbank-hero.png",
     },
     {
-      name: 'VIXCASH',
-      description: 'Secure transaction and payment',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      ),
+      id: 5,
+      name: "VIXCASH",
+      desc: "VixCash is a platform that simplifies the management of Trade Finance processes, including the issuance of Bank Guarantees and Letters of Credit, ensuring compliance with banking regulations.",
+      logo: "/img/vixborder-logo.png",
+      img: "/img/vixcash-hero.png",
     },
     {
-      name: 'VIXBANK',
-      description: 'Specialized core banking system for trade',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-        </svg>
-      ),
+      id: 6,
+      name: "VIXPROTEKSI",
+      desc: "VixProteksi is a platform that simplifies the management of Trade Insurance processes, ensuring compliance with insurance regulations.",
+      logo: "/img/vixborder-logo.png",
+      img: "/img/vixproteksi-hero.png",
     },
     {
-      name: 'VIXMARKET',
-      description: 'Sub portal buyer and supplier',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-    },
-    {
-      name: 'VIXPROTEKSI',
-      description: 'Trade activity insurance protection',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
-    },
-    {
-      name: 'VIXADVIS',
-      description: 'Specialized trade consultancy',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4 text-[#59e9d7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
+      id: 7,
+      name: "VIXMARKET",
+      desc: "VixMarket is a platform that simplifies the management of Trade Marketplaces, ensuring compliance with marketplace regulations.",
+      logo: "/img/vixborder-logo.png",
+      img: "/img/vixmarket-hero.png",
     },
   ];
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
-  // Variasi SpotlightCard colors
-  const spotlightColors = [
-    "rgba(89, 233, 215, 0.5)" as `rgba(${number}, ${number}, ${number}, ${number})`,
-    "rgba(70, 114, 188, 0.5)" as `rgba(${number}, ${number}, ${number}, ${number})`,
-    "rgba(105, 233, 189, 0.5)" as `rgba(${number}, ${number}, ${number}, ${number})`,
-  ];
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+  useEffect(() => {
+    if (!api) {
+      return;
     }
-  };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1, 
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 10
-      }
-    }
-  };
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   return (
-    <section id="our-products" className="py-20 md:py-24 relative overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#4672bc]/10 via-[#59e9d7]/5 to-[#4672bc]/10"></div>
-      
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoLTZ2LTZoNnptLTYtNnYtNmg2djZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
-      
-      <div className="container-fluid px-2 md:px-4 relative z-10">
-        <motion.div 
-          className="text-center mb-10" 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Products</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            We offer a comprehensive suite of integrated solutions to enhance your trade ecosystem
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="w-full max-w-7xl mx-auto px-2"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {/* Baris pertama: 5 card */}
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mb-8">
-            {products.slice(0, 5).map((product, index) => (
-              <motion.div 
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="px-0"
-              >
-                <SpotlightCard
-                  className="h-full px-6 py-8 transform transition backdrop-blur-sm bg-gradient-to-br from-white/40 via-white/25 to-white/15 border-[1.5px] border-t-white/50 border-l-white/50 border-r-white/20 border-b-white/20 shadow-xl shadow-[#4672bc]/15 hover:shadow-[#59e9d7]/20"
-                  spotlightColor={spotlightColors[index % spotlightColors.length]}
-                >
-                  <div className="flex flex-col items-center text-center h-full justify-center">
-                    <div className="mb-3 transition-transform duration-300 transform hover:scale-110">
-                      {product.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">
-                      {product.name}
-                    </h3>
-                    <p className="text-gray-600">
-                      {product.description}
-                    </p>
-                  </div>
-                </SpotlightCard>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Baris kedua: 4 card rata tengah */}
-          <motion.div className="flex justify-center mt-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full lg:w-[90%]">
-              {products.slice(5).map((product, index) => (
-                <motion.div 
-                  key={index + 5}
-                  variants={itemVariants}
-                  whileHover={{ y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-0"
-                >
-                  <SpotlightCard
-                    className="h-full px-6 py-8 transform transition backdrop-blur-sm bg-gradient-to-br from-white/40 via-white/25 to-white/15 border-[1.5px] border-t-white/50 border-l-white/50 border-r-white/20 border-b-white/20 shadow-xl shadow-[#4672bc]/15 hover:shadow-[#59e9d7]/20"
-                    spotlightColor={spotlightColors[(index + 5) % spotlightColors.length]}
+    <>
+      {/* BUTTONS */}
+      <div className="border-[0.5px] border-l-0 border-[#F5F5F5]"></div>
+      <section className="place-items-center border-[0.5px] border-[#F5F5F5]">
+        <Carousel className="p-4">
+          <CarouselContent className="-ml-1">
+            {items.map((item) => (
+              <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/5">
+                <div className="p-1">
+                  <button
+                    onClick={() => {
+                      if (api) {
+                        api.scrollTo(item.id - 1);
+                      }
+                    }}
+                    className={`flex w-full items-center justify-center rounded-full border p-2 text-sm ${
+                      current === item.id
+                        ? "bg-gradient-to-r from-[#99E1FF] via-[#E5F8FF] to-[#CCF0FF] font-semibold text-[#006B99]"
+                        : ""
+                    }`}
                   >
-                    <div className="flex flex-col items-center text-center h-full justify-center">
-                      <div className="mb-3 transition-transform duration-300 transform hover:scale-110">
-                        {product.icon}
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-800 mb-2">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-600">
-                        {product.description}
-                      </p>
-                    </div>
-                  </SpotlightCard>
-                </motion.div>
-              ))}
+                    {item.name}
+                  </button>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
+      <div className="border-[0.5px] border-r-0 border-[#F5F5F5]"></div>
+
+      {/* DETAILS */}
+      <div className="border-[0.5px] border-l-0 border-[#F5F5F5]"></div>
+      <section className="grid grid-cols-[20%_80%]">
+        <div className="border-[0.5px] border-[#F5F5F5] p-4">
+          <Image
+            src={items[current].logo}
+            alt={items[current].name}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-auto"
+          />
+        </div>
+        <p className="border-[0.5px] border-[#F5F5F5] p-4 text-[#666666]">
+          {items[current].desc}
+        </p>
+      </section>
+      <div className="border-[0.5px] border-r-0 border-[#F5F5F5]"></div>
+
+      {/* HERO IMAGES */}
+      <div className="border-[0.5px] border-l-0 border-[#F5F5F5]"></div>
+      <section className="place-items-center border-[0.5px] border-[#F5F5F5]">
+        <Carousel setApi={setApi} className="p-4">
+          <CarouselContent>
+            {items.map((item) => (
+              <CarouselItem key={item.id}>
+                <Image
+                  src={item.img}
+                  alt={item.name}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="h-auto w-full"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
+      <div className="border-[0.5px] border-r-0 border-[#F5F5F5]"></div>
+
+      {/* ROW 4 */}
+      <div className="border-[0.5px] border-b-0 border-l-0 border-[#F5F5F5]"></div>
+      <div className="h-16 border-[0.5px] border-b-0 border-[#F5F5F5]"></div>
+      <div className="border-[0.5px] border-b-0 border-r-0 border-[#F5F5F5]"></div>
+    </>
+  );
+}
+
+function OtherProducts() {
+  const products = [
+    {
+      id: "vixadvis",
+      title: "Expert Insights, Smarter Decisions",
+      tag: "VIXADVIS",
+      description:
+        "Empowers companies with strategic insights and tailored solutions across Manufacturing, Automotive, Trading, Customs, and Taxation.",
+    },
+    {
+      id: "vixfreight",
+      title: "One Platform for All Freight",
+      tag: "VIXFREIGHT",
+      description:
+        "Connects importers, exporters, and domestic suppliers with shipping lines, air cargo, trucking, and warehousing partners in one streamlined e...",
+    },
+    {
+      id: "vixtrade",
+      title: "Simplify Trade Operations",
+      tag: "VIXTRADE",
+      description:
+        "Simplifies customs document management, purchase orders, invoicing, goods flow control, and GRN processes.",
+    },
+  ];
+
+  return (
+    <section className="bg-[#FAFAFA] py-12">
+      <div className="mx-auto max-w-6xl px-4 text-center">
+        <h2 className="text-3xl font-semibold text-[#004766]">
+          Other Products
+        </h2>
+        <p className="mb-10 mt-2 text-[#666666]">
+          Get ready for a complete suite of trade solutions is on the way to
+          streamline your business operations.
+        </p>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="rounded-xl bg-white p-6 text-left transition hover:shadow-sm"
+            >
+              <span className="mb-2 inline-block rounded bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-700">
+                {product.tag}
+              </span>
+              <h3 className="mb-2 text-xl font-bold text-[#004766]">
+                {product.title}
+              </h3>
+              <p className="mb-4 text-[#646464]">{product.description}</p>
+              <a
+                href="#"
+                className="inline-flex items-center font-semibold text-[#004766] hover:underline"
+              >
+                Learn more <span className="ml-1">→</span>
+              </a>
             </div>
-          </motion.div>
-        </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex w-full justify-center">
+          <button className="flex gap-2 text-sm font-medium text-[#004766] hover:underline">
+            Show all <ChevronDown strokeWidth={1.5} size={20} />
+          </button>
+        </div>
       </div>
     </section>
   );
-} 
+}
+
+function LatestProduct() {
+  return (
+    <section className="bg-white py-16">
+      <div className="p-4 text-center">
+        <h1 className="text-3xl font-semibold text-[#01627F]">Our Products</h1>
+        <p className="text-balance text-lg text-[#666666]">
+          We offer a comprehensive suite of integrated solutions to enhance your
+          trade ecosystem
+        </p>
+      </div>
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-2">
+        {/* Text Content */}
+        <div>
+          <div className="mb-6 rounded-lg">
+            <span className="mb-2 inline-block rounded-md bg-gradient-to-r from-[#99E1FF] via-[#E5F8FF] to-[#CCF0FF] px-2 py-1 text-xs font-semibold text-[#006B99]">
+              VIXBORDER
+            </span>
+            <h3 className="text-2xl font-semibold text-[#00648F]">
+              <span className="text-[#004766]">Automate</span> your
+              Export-Import Document in Seconds
+            </h3>
+            <p className="mb-4 text-[#646464]">
+              Extract document data with AI, ensure validation, and send
+              declarations straight to CEISA 4.0.
+            </p>
+            <Link
+              href="/vixborder"
+              className="inline-flex items-center font-semibold text-[#004766] hover:underline"
+            >
+              Learn more <span className="ml-1">→</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Right Image */}
+        <div className="flex justify-center">
+          <Image
+            src="/img/vixborder-at-landing.png" // Replace with actual image path later
+            alt="VIX Border Hero"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div className="mt-4 flex max-w-7xl gap-4 px-4">
+        <div className="flex w-full items-start gap-3">
+          <FileText className="mt-1 min-h-6 min-w-6 text-[#595959]" />
+          <div>
+            <h4 className="text-sm font-semibold text-[#595959]">
+              AI Document Scanning
+            </h4>
+            <p className="text-sm text-[#999999]">
+              Extract key data documents with up to 99% accuracy
+            </p>
+          </div>
+        </div>
+        <Separator orientation="vertical" />
+        <div className="flex w-full items-start gap-3">
+          <BadgeCheck className="mt-1 min-h-6 min-w-6 text-[#595959]" />
+          <div>
+            <h4 className="text-sm font-semibold text-[#595959]">
+              Anti-NOTUL System
+            </h4>
+            <p className="text-sm text-[#999999]">
+              Triple layer Import-Export document validation with alerts and
+              notification.
+            </p>
+          </div>
+        </div>
+        <Separator orientation="vertical" />
+        <div className="flex w-full items-start gap-3">
+          <FileChartColumn className="mt-1 min-h-6 min-w-6 text-[#595959]" />
+          <div>
+            <h4 className="text-sm font-semibold text-[#595959]">
+              Smart Analytics
+            </h4>
+            <p className="text-sm text-[#999999]">
+              Comprehensive analytical reports that provide valuable insights
+              into your trade operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,149 +1,199 @@
-'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
-import SpotlightCard from './SpotlightCard';
+import {
+  Package,
+  ShieldCheck,
+  Shuffle,
+  Wallet2,
+  Waypoints,
+} from "lucide-react";
+import Image from "next/image";
 
 export default function VisionMission() {
-  const visionPoints = [
+  return (
+    <section className="m-auto max-w-7xl px-8">
+      <Vision />
+      <Mission />
+    </section>
+  );
+}
+
+function Vision() {
+  return (
+    <section className="flex items-center gap-16">
+      <div>
+        <h1 className="text-3xl font-semibold text-[#01627F]">Our Vision</h1>
+        <p className="text-lg italic text-[#666666]">
+          Our vision is to create a seamless global trade ecosystem that
+          simplifies processes, ensures compliance, and enhances financial
+          accessibility.
+        </p>
+      </div>
+      <Image
+        src="/img/ship-container.png"
+        alt="ship-container"
+        width={0}
+        height={0}
+        sizes="100vw"
+        className="h-auto w-[40%]"
+      />
+    </section>
+  );
+}
+
+// MissionList.tsx
+type Mission = {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  bgColor: string;
+};
+
+type MissionListProps = {
+  missions: Mission[];
+};
+
+function Mission() {
+  const missions = [
     {
-      title: 'Simplify Trade Processes',
-      description: 'Streamlining trade processes to make them faster and more efficient',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#4672bc]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
+      id: 1,
+      icon: <Shuffle size={32} color="#34CBFF" />,
+      bgColor: "#ECFBFF",
+      title: "Simplify Trade Processes",
+      description:
+        "Streamlining trade processes to make them faster and more efficient",
     },
     {
-      title: 'Ensure Regulatory Compliance',
-      description: 'Ensuring adherence to global and domestic trade regulations',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#4672bc]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
+      id: 2,
+      icon: <ShieldCheck size={32} color="#4B9B4B" />,
+      bgColor: "#EEF7EE",
+      title: "Ensure Regulatory Compliance",
+      description:
+        "Ensuring adherence to global and domestic trade regulations",
     },
     {
-      title: 'Enhance Financial Accessibility',
-      description: 'Improving access to financial services for all trade stakeholders',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#4672bc]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
+      id: 3,
+      icon: <Wallet2 size={32} color="#FF6A8E" />,
+      bgColor: "#FFEBF0",
+      title: "Enhance Financial Accessibility",
+      description:
+        "Improving access to financial services for all trade stakeholders",
     },
     {
-      title: 'Optimize Supply Chain Operations',
-      description: 'Enhancing supply chain operations to be more responsive and cost-effective',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#4672bc]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-        </svg>
-      ),
+      id: 4,
+      icon: <Package size={32} color="#F8A71B" />,
+      bgColor: "#FEF4E1",
+      title: "Optimize Supply Chain Operations",
+      description:
+        "Enhancing supply chain operations to be more responsive and cost-effective",
     },
     {
-      title: 'Build a Connected Trade Ecosystem',
-      description: 'Creating a cohesive and synergistic trade ecosystem',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#4672bc]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h.5A2.5 2.5 0 0020 5.5v-1.5" />
-        </svg>
-      ),
+      id: 5,
+      icon: <Waypoints size={32} color="#BC6DC5" />,
+      bgColor: "#F7EDF8",
+      title: "Build a Connected Trade Ecosystem",
+      description: "Creating a cohesive and synergistic trade ecosystem",
     },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 10
-      }
-    }
-  };
-
-  const spotlightColors = [
-    "rgba(89, 233, 215, 0.5)",
-    "rgba(70, 114, 188, 0.5)",
-    "rgba(105, 233, 189, 0.5)",
-  ] as const;
-
   return (
-    <section id="vision-mission" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#4672bc]/10 via-[#59e9d7]/5 to-[#4672bc]/10"></div>
-      
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoLTZ2LTZoNnptLTYtNnYtNmg2djZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
-
-      <div className="container-fluid px-6 relative z-10">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Vision & Mission</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Our vision is to create a seamless global trade ecosystem that simplifies processes, ensures compliance, and enhances financial accessibility.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="max-w-[1600px] mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 xl:gap-8">
-            {visionPoints.map((point, index) => (
-              <motion.div 
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="w-full"
-              >
-                <SpotlightCard
-                  className="h-full p-8 transform transition backdrop-blur-sm bg-gradient-to-br from-white/80 via-white/75 to-white/70 border-[1.5px] border-white/50 shadow-lg"
-                  spotlightColor={spotlightColors[index % spotlightColors.length]}
-                >
-                  <div className="flex flex-col items-center text-center h-full">
-                    <motion.div 
-                      className="mb-6 relative"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#4672bc]/20 to-[#59e9d7]/20 rounded-full blur-xl">
-                      </div>
-                      <div className="transform scale-125">
-                        {point.icon}
-                      </div>
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-4">{point.title}</h3>
-                    <p className="text-gray-600">{point.description}</p>
-                  </div>
-                </SpotlightCard>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+    <section className="mx-32 mt-24">
+      <div className="text-center">
+        <h1 className="text-3xl font-semibold text-[#01627F]">Our Mission</h1>
+        <p className="text-balance text-lg text-[#666666]">
+          The VIXTERO Trade Portal is designed to be a comprehensive, scalable,
+          and resilient platform that facilitates seamless global and domestic
+          trade.
+        </p>
+      </div>
+      <div className="mt-8 flex flex-col gap-16">
+        <ul className="grid grid-cols-6 justify-center justify-items-center">
+          <li
+            key={missions[0].id}
+            className="col-span-2 max-w-80 border-[0.5px] border-l-0 border-t-0 border-[#F5F5F5] p-8 text-center"
+          >
+            <div
+              className="grid size-12 place-content-center justify-self-center rounded-md"
+              style={{ backgroundColor: missions[0].bgColor }}
+            >
+              {missions[0].icon}
+            </div>
+            <h3 className="mt-4 font-semibold">{missions[0].title}</h3>
+            <p className="mt-2 text-sm text-[#666666]">
+              {missions[0].description}
+            </p>
+          </li>
+          <li
+            key={missions[1].id}
+            className="col-span-2 max-w-80 border-[0.5px] border-t-0 border-[#F5F5F5] p-8 text-center"
+          >
+            <div
+              className="grid size-12 place-content-center justify-self-center rounded-md"
+              style={{ backgroundColor: missions[1].bgColor }}
+            >
+              {missions[1].icon}
+            </div>
+            <h3 className="mt-4 font-semibold">{missions[1].title}</h3>
+            <p className="mt-2 text-sm text-[#666666]">
+              {missions[1].description}
+            </p>
+          </li>
+          <li
+            key={missions[2].id}
+            className="col-span-2 max-w-80 border-[0.5px] border-r-0 border-t-0 border-[#F5F5F5] p-8 text-center"
+          >
+            <div
+              className="grid size-12 place-content-center justify-self-center rounded-md"
+              style={{ backgroundColor: missions[2].bgColor }}
+            >
+              {missions[2].icon}
+            </div>
+            <h3 className="mt-4 font-semibold">{missions[2].title}</h3>
+            <p className="mt-2 text-sm text-[#666666]">
+              {missions[2].description}
+            </p>
+          </li>
+          <li className="col-span-3 max-w-80 justify-self-end border-[0.5px] border-b-0 border-l-0 border-[#F5F5F5] p-8 text-center">
+            <div
+              className="grid size-12 place-content-center justify-self-center rounded-md"
+              style={{ backgroundColor: missions[3].bgColor }}
+            >
+              {missions[3].icon}
+            </div>
+            <h3 className="mt-4 font-semibold">{missions[3].title}</h3>
+            <p className="mt-2 text-sm text-[#666666]">
+              {missions[3].description}
+            </p>
+          </li>
+          <li className="col-span-3 max-w-80 justify-self-start border-[0.5px] border-b-0 border-r-0 border-[#F5F5F5] p-8 text-center">
+            <div
+              className="grid size-12 place-content-center justify-self-center rounded-md"
+              style={{ backgroundColor: missions[4].bgColor }}
+            >
+              {missions[4].icon}
+            </div>
+            <h3 className="mt-4 font-semibold">{missions[4].title}</h3>
+            <p className="mt-2 text-sm text-[#666666]">
+              {missions[4].description}
+            </p>
+          </li>
+        </ul>
       </div>
     </section>
   );
-} 
+}
+
+const MissionList = ({ missions }: MissionListProps) => (
+  <>
+    {missions.map((mission) => (
+      <li key={mission.id} className="max-w-80 text-center">
+        <div
+          className="grid size-12 place-content-center justify-self-center rounded-md"
+          style={{ backgroundColor: mission.bgColor }}
+        >
+          {mission.icon}
+        </div>
+        <h3 className="mt-4 font-semibold">{mission.title}</h3>
+        <p className="mt-2 text-sm text-[#666666]">{mission.description}</p>
+      </li>
+    ))}
+  </>
+);
