@@ -166,9 +166,9 @@ const MapChart: React.FC = () => {
       requestAnimationFrame(rotate);
     };
 
-    if (!isMobile) {
-      rotate(); // only rotate globe on non-mobile
-    }
+    // if (!isMobile) {
+    rotate(); // only rotate globe on non-mobile
+    // }
 
     return () => {
       root.dispose();
@@ -180,8 +180,8 @@ const MapChart: React.FC = () => {
       id="chartdiv"
       ref={chartRef}
       style={{
-        width: isMobile ? "100vw" : "150vh",
-        height: isMobile ? "80vh" : "150vh",
+        width: "150vh",
+        height: "150vh",
       }}
     />
   );
