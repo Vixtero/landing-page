@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function VisionMission() {
   return (
-    <section className="m-auto max-w-7xl px-8">
+    <section className="m-auto max-w-7xl px-4 md:px-8">
       <Vision />
       <Mission />
     </section>
@@ -18,10 +18,12 @@ export default function VisionMission() {
 
 function Vision() {
   return (
-    <section className="flex items-center gap-16">
-      <div>
-        <h1 className="text-3xl font-semibold text-[#01627F]">Our Vision</h1>
-        <p className="text-lg italic text-[#666666]">
+    <section className="flex flex-col-reverse items-center gap-4 md:flex-row md:gap-16">
+      <div className="">
+        <h2 className="text-center text-2xl font-semibold text-[#004766] md:text-start md:text-3xl">
+          Our Vision
+        </h2>
+        <p className="mb-10 mt-2 text-center text-base italic text-[#666666] md:text-start md:text-lg">
           Our vision is to create a seamless global trade ecosystem that
           simplifies processes, ensures compliance, and enhances financial
           accessibility.
@@ -33,7 +35,7 @@ function Vision() {
         width={0}
         height={0}
         sizes="100vw"
-        className="h-auto w-[40%]"
+        className="mt-16 h-auto w-[80%] md:mt-0 md:w-[40%]"
       />
     </section>
   );
@@ -95,20 +97,22 @@ function Mission() {
     },
   ];
   return (
-    <section className="mx-32 mt-24">
+    <section className="mx-0 mt-8 md:mx-32 md:mt-24">
       <div className="text-center">
-        <h1 className="text-3xl font-semibold text-[#01627F]">Our Mission</h1>
-        <p className="text-balance text-lg text-[#666666]">
+        <h2 className="text-center text-2xl font-semibold text-[#004766] md:text-3xl">
+          Our Mission
+        </h2>
+        <p className="mb-10 mt-2 text-balance text-center text-base text-[#666666] md:text-lg">
           The VIXTERO Trade Portal is designed to be a comprehensive, scalable,
           and resilient platform that facilitates seamless global and domestic
           trade.
         </p>
       </div>
       <div className="mt-8 flex flex-col gap-16">
-        <ul className="grid grid-cols-6 justify-center justify-items-center">
+        <ul className="grid grid-cols-1 justify-center justify-items-center md:grid-cols-6">
           <li
             key={missions[0].id}
-            className="col-span-2 max-w-80 border-[0.5px] border-l-0 border-t-0 border-[#F5F5F5] p-8 text-center"
+            className="col-span-2 max-w-80 border-l-0 border-t-0 border-[#F5F5F5] p-2 text-center md:border-[0.5px] md:p-8"
           >
             <div
               className="grid size-12 place-content-center justify-self-center rounded-md"
@@ -123,7 +127,7 @@ function Mission() {
           </li>
           <li
             key={missions[1].id}
-            className="col-span-2 max-w-80 border-[0.5px] border-t-0 border-[#F5F5F5] p-8 text-center"
+            className="col-span-2 max-w-80 border-t-0 border-[#F5F5F5] p-2 text-center md:border-[0.5px] md:p-8"
           >
             <div
               className="grid size-12 place-content-center justify-self-center rounded-md"
@@ -138,7 +142,7 @@ function Mission() {
           </li>
           <li
             key={missions[2].id}
-            className="col-span-2 max-w-80 border-[0.5px] border-r-0 border-t-0 border-[#F5F5F5] p-8 text-center"
+            className="col-span-2 max-w-80 border-r-0 border-t-0 border-[#F5F5F5] p-2 text-center md:border-[0.5px] md:p-8"
           >
             <div
               className="grid size-12 place-content-center justify-self-center rounded-md"
@@ -151,7 +155,7 @@ function Mission() {
               {missions[2].description}
             </p>
           </li>
-          <li className="col-span-3 max-w-80 justify-self-end border-[0.5px] border-b-0 border-l-0 border-[#F5F5F5] p-8 text-center">
+          <li className="col-span-2 max-w-80 border-b-0 border-l-0 border-[#F5F5F5] p-2 text-center md:col-span-3 md:justify-self-end md:border-[0.5px] md:p-8">
             <div
               className="grid size-12 place-content-center justify-self-center rounded-md"
               style={{ backgroundColor: missions[3].bgColor }}
@@ -163,7 +167,7 @@ function Mission() {
               {missions[3].description}
             </p>
           </li>
-          <li className="col-span-3 max-w-80 justify-self-start border-[0.5px] border-b-0 border-r-0 border-[#F5F5F5] p-8 text-center">
+          <li className="col-span-2 max-w-80 border-b-0 border-r-0 border-[#F5F5F5] p-2 text-center md:col-span-3 md:justify-self-start md:border-[0.5px] md:p-8">
             <div
               className="grid size-12 place-content-center justify-self-center rounded-md"
               style={{ backgroundColor: missions[4].bgColor }}

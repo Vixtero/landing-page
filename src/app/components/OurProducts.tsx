@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
 
 export default function OurProducts() {
   return (
-    <section className="m-auto my-16 max-w-7xl">
+    <section className="m-auto mb-16 max-w-7xl md:my-16">
       <LatestProduct />
       <OtherProducts />
       {/* <section className="m-auto my-16 grid max-w-7xl grid-cols-[10%_80%_10%]">
@@ -200,6 +200,93 @@ function CarouselDemo() {
   );
 }
 
+function LatestProduct() {
+  return (
+    <section className="bg-white py-16">
+      <div className="p-4 text-center">
+        <h2 className="text-2xl font-semibold text-[#004766] md:text-3xl">
+          Our Products
+        </h2>
+        <p className="mb-10 mt-2 text-sm text-[#666666] md:text-base">
+          We offer a comprehensive suite of integrated solutions to enhance your
+          trade ecosystem
+        </p>
+      </div>
+      <div className="mx-auto grid max-w-7xl items-center gap-4 px-4 md:grid-cols-2 md:gap-10">
+        {/* Text Content */}
+        <div>
+          <span className="mb-2 inline-block rounded-md bg-gradient-to-r from-[#99E1FF] via-[#E5F8FF] to-[#CCF0FF] px-2 py-1 text-xs font-semibold text-[#006B99]">
+            VIXBORDER
+          </span>
+          <h3 className="text-xl font-semibold text-[#00648F] md:text-2xl">
+            <span className="text-[#004766]">Automate</span> your Export-Import
+            Document in Seconds
+          </h3>
+          <p className="mb-4 text-sm text-[#646464] md:text-base">
+            Extract document data with AI, ensure validation, and send
+            declarations straight to CEISA 4.0.
+          </p>
+          <Link
+            href="/vixborder"
+            className="inline-flex items-center text-sm font-semibold text-[#004766] hover:underline md:text-base"
+          >
+            Learn more <span className="ml-1">→</span>
+          </Link>
+        </div>
+
+        {/* Right Image */}
+        <div className="flex justify-center">
+          <Image
+            src="/img/vixborder-at-landing.png" // Replace with actual image path later
+            alt="VIX Border Hero"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div className="mt-4 flex max-w-7xl flex-col gap-4 px-4 md:flex-row">
+        <div className="flex w-full items-start gap-3">
+          <FileText className="mt-1 min-h-6 min-w-6 text-[#595959]" />
+          <div>
+            <h4 className="text-sm font-semibold text-[#595959]">
+              AI Document Scanning
+            </h4>
+            <p className="text-sm text-[#999999]">
+              Extract key data documents with up to 99% accuracy
+            </p>
+          </div>
+        </div>
+        <div className="hidden min-h-full min-w-[1px] bg-border md:block" />
+        <div className="flex w-full items-start gap-3">
+          <BadgeCheck className="mt-1 min-h-6 min-w-6 text-[#595959]" />
+          <div>
+            <h4 className="text-sm font-semibold text-[#595959]">
+              Anti-NOTUL System
+            </h4>
+            <p className="text-sm text-[#999999]">
+              Triple layer Import-Export document validation with alerts and
+              notification.
+            </p>
+          </div>
+        </div>
+        <div className="hidden min-h-full min-w-[1px] bg-border md:block" />
+        <div className="flex w-full items-start gap-3">
+          <FileChartColumn className="mt-1 min-h-6 min-w-6 text-[#595959]" />
+          <div>
+            <h4 className="text-sm font-semibold text-[#595959]">
+              Smart Analytics
+            </h4>
+            <p className="text-sm text-[#999999]">
+              Comprehensive analytical reports that provide valuable insights
+              into your trade operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function OtherProducts() {
   const products = [
     {
@@ -228,10 +315,10 @@ function OtherProducts() {
   return (
     <section className="bg-[#FAFAFA] py-12">
       <div className="mx-auto max-w-6xl px-4 text-center">
-        <h2 className="text-3xl font-semibold text-[#004766]">
+        <h2 className="text-2xl font-semibold text-[#004766] md:text-3xl">
           Other Products
         </h2>
-        <p className="mb-10 mt-2 text-[#666666]">
+        <p className="mb-10 mt-2 text-sm text-[#666666] md:text-base">
           Get ready for a complete suite of trade solutions is on the way to
           streamline your business operations.
         </p>
@@ -240,117 +327,32 @@ function OtherProducts() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="rounded-xl bg-white p-6 text-left transition hover:shadow-sm"
+              className="rounded-xl bg-white p-4 text-left transition hover:shadow-sm md:p-6"
             >
               <span className="mb-2 inline-block rounded bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-700">
                 {product.tag}
               </span>
-              <h3 className="mb-2 text-xl font-bold text-[#004766]">
+              <h3 className="mb-2 text-lg font-bold text-[#004766] md:text-xl">
                 {product.title}
               </h3>
-              <p className="mb-4 text-[#646464]">{product.description}</p>
-              <a
+              <p className="mb-4 text-sm text-[#646464] md:text-base">
+                {product.description}
+              </p>
+              {/* <a
                 href="#"
                 className="inline-flex items-center font-semibold text-[#004766] hover:underline"
               >
                 Learn more <span className="ml-1">→</span>
-              </a>
+              </a> */}
             </div>
           ))}
         </div>
 
-        <div className="mt-8 flex w-full justify-center">
+        {/* <div className="mt-8 flex w-full justify-center">
           <button className="flex gap-2 text-sm font-medium text-[#004766] hover:underline">
             Show all <ChevronDown strokeWidth={1.5} size={20} />
           </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function LatestProduct() {
-  return (
-    <section className="bg-white py-16">
-      <div className="p-4 text-center">
-        <h1 className="text-3xl font-semibold text-[#01627F]">Our Products</h1>
-        <p className="text-balance text-lg text-[#666666]">
-          We offer a comprehensive suite of integrated solutions to enhance your
-          trade ecosystem
-        </p>
-      </div>
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-2">
-        {/* Text Content */}
-        <div>
-          <div className="mb-6 rounded-lg">
-            <span className="mb-2 inline-block rounded-md bg-gradient-to-r from-[#99E1FF] via-[#E5F8FF] to-[#CCF0FF] px-2 py-1 text-xs font-semibold text-[#006B99]">
-              VIXBORDER
-            </span>
-            <h3 className="text-2xl font-semibold text-[#00648F]">
-              <span className="text-[#004766]">Automate</span> your
-              Export-Import Document in Seconds
-            </h3>
-            <p className="mb-4 text-[#646464]">
-              Extract document data with AI, ensure validation, and send
-              declarations straight to CEISA 4.0.
-            </p>
-            <Link
-              href="/vixborder"
-              className="inline-flex items-center font-semibold text-[#004766] hover:underline"
-            >
-              Learn more <span className="ml-1">→</span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Right Image */}
-        <div className="flex justify-center">
-          <Image
-            src="/img/vixborder-at-landing.png" // Replace with actual image path later
-            alt="VIX Border Hero"
-            width={600}
-            height={400}
-          />
-        </div>
-      </div>
-      <div className="mt-4 flex max-w-7xl gap-4 px-4">
-        <div className="flex w-full items-start gap-3">
-          <FileText className="mt-1 min-h-6 min-w-6 text-[#595959]" />
-          <div>
-            <h4 className="text-sm font-semibold text-[#595959]">
-              AI Document Scanning
-            </h4>
-            <p className="text-sm text-[#999999]">
-              Extract key data documents with up to 99% accuracy
-            </p>
-          </div>
-        </div>
-        <Separator orientation="vertical" />
-        <div className="flex w-full items-start gap-3">
-          <BadgeCheck className="mt-1 min-h-6 min-w-6 text-[#595959]" />
-          <div>
-            <h4 className="text-sm font-semibold text-[#595959]">
-              Anti-NOTUL System
-            </h4>
-            <p className="text-sm text-[#999999]">
-              Triple layer Import-Export document validation with alerts and
-              notification.
-            </p>
-          </div>
-        </div>
-        <Separator orientation="vertical" />
-        <div className="flex w-full items-start gap-3">
-          <FileChartColumn className="mt-1 min-h-6 min-w-6 text-[#595959]" />
-          <div>
-            <h4 className="text-sm font-semibold text-[#595959]">
-              Smart Analytics
-            </h4>
-            <p className="text-sm text-[#999999]">
-              Comprehensive analytical reports that provide valuable insights
-              into your trade operations.
-            </p>
-          </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

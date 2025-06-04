@@ -5,12 +5,12 @@ export default function AboutUs() {
   const stats = [
     {
       icon: <BadgeCheck size={32} color="#004766" />,
-      title: "30+",
+      title: "34.000+",
       description: "Trusted Industry Leaders",
     },
     {
       icon: <Radar size={32} color="#004766" />,
-      title: "7,000+",
+      title: "7.000+",
       description: "Potential Network Reach",
     },
     {
@@ -26,20 +26,21 @@ export default function AboutUs() {
   ];
 
   return (
-    <div className="bg-white">
-      <section className="m-auto mt-16 max-w-7xl gap-4 bg-[#F5FCFF] px-16">
-        <div className="grid grid-cols-2">
+    <div className="bg-[#F5FCFF]">
+      <section className="m-auto mt-16 max-w-7xl gap-4 px-0 md:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           <Image
             src="/img/plane.png" // Replace with actual image path later
             alt="VIX Border Hero"
             width={600}
             height={400}
+            className="top-10 w-[70%] md:w-full"
           />
-          <div className="p-12">
+          <div className="p-6 md:p-12">
             <h1 className="text-2xl font-semibold text-[#004766]">
               About VIXTERO
             </h1>
-            <p className="mt-2 text-[#353535]">
+            <p className="mt-2 text-justify text-sm text-[#353535] md:text-left md:text-base">
               At VIXTERO (PT Vixtero Pintar Nusantara), we deliver sophisticated
               services that strengthen both international and domestic trade
               through seamless integration. Our Vix Trade Portal empowers
@@ -52,7 +53,7 @@ export default function AboutUs() {
             </p>
           </div>
         </div>
-        <ul className="flex min-w-[40%] justify-between gap-4">
+        <ul className="flex min-w-[40%] flex-col justify-between gap-0 md:flex-row md:gap-4">
           {stats.map(({ icon, title, description }, index) => (
             <li
               key={index}

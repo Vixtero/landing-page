@@ -31,7 +31,7 @@ const MapChart: React.FC = () => {
     chart.set("rotationX", -150.8456);
     chart.set("rotationY", 5.2088);
     chart.seriesContainer.set("x", 150);
-    chart.set("zoomLevel", 1.5);
+    // chart.set("zoomLevel", 1.5);
 
     const backgroundSeries = chart.series.push(
       am5map.MapPolygonSeries.new(root, {})
@@ -174,7 +174,7 @@ const MapChart: React.FC = () => {
     <div
       id="chartdiv"
       ref={chartRef}
-      style={{ width: "150vw", height: "150vh" }}
+      style={{ width: "150vh", height: "150vh" }}
     />
   );
 };

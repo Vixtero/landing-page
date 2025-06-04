@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer>
-      <hr className="mx-8" />
-      <div className="flex items-center justify-between px-8 py-6">
+      <hr className="mx-4 md:mx-8" />
+      <div className="flex items-center justify-between px-4 py-4 md:px-8 md:py-6">
         <Image
           src="/img/vixtero-logo-only.png"
           alt="Vixtero Logo"

@@ -78,22 +78,22 @@ export default function ContactUs() {
   }
 
   return (
-    <section className="p-8">
-      <div className="relative h-full overflow-hidden rounded-2xl bg-transparent py-16">
-        <div className="flex h-full w-full flex-col items-center justify-center gap-16 px-8">
+    <section className="p-4 md:p-8">
+      <div className="relative h-full overflow-hidden rounded-2xl bg-transparent pb-16 pt-4 md:py-16">
+        <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-2 md:gap-16 md:px-8">
           {/* HEADING */}
           <div className="p-4 text-center">
-            <h1 className="text-3xl font-semibold text-[#01627F]">
+            <h1 className="text-center text-2xl font-semibold text-[#004766] md:text-3xl">
               Contact our team
             </h1>
-            <p className="text-balance text-lg text-[#666666]">
+            <p className="my-2 text-balance text-center text-base text-[#666666] md:mb-10 md:text-lg">
               Transform your trade operations with VIXTERO. Our team is ready to
               assist you.
             </p>
           </div>
 
           {/* MAIN CONTENT */}
-          <div className="mx-auto grid max-w-3xl grid-cols-[60%_40%] gap-16">
+          <div className="mx-auto grid max-w-3xl grid-cols-1 gap-16 md:grid-cols-[60%_40%]">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -174,7 +174,7 @@ export default function ContactUs() {
             </Form>
             <div className="w-full">
               <h4 className="text-xl font-semibold">Contact us</h4>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-2 space-y-2 md:mt-4">
                 <li className="flex items-center gap-2">
                   <PhoneCallIcon />
                   <a href="" className="font-medium underline">
@@ -189,7 +189,7 @@ export default function ContactUs() {
                 </li>
               </ul>
               <h4 className="mt-12 text-xl font-semibold">Visit us</h4>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-2 space-y-2 md:mt-4">
                 <li className="flex items-center gap-2">
                   <MapPin />
                   <a href="" className="font-medium underline">
