@@ -6,6 +6,9 @@ import * as am5map from "@amcharts/amcharts5/map";
 import * as am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
+const isMobile =
+  typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
+
 const MapChart: React.FC = () => {
   const chartRef = useRef<HTMLDivElement>(null);
 
@@ -18,8 +21,8 @@ const MapChart: React.FC = () => {
 
     const chart = root.container.children.push(
       am5map.MapChart.new(root, {
-        panX: "rotateX",
-        panY: "rotateY",
+        panX: "none",
+        panY: "none",
         projection: am5map.geoOrthographic(),
         homeGeoPoint: { latitude: -6.2088, longitude: 106.8456 }, // Jakarta
         wheelable: false, // ✅ matikan scroll zoom
@@ -69,13 +72,13 @@ const MapChart: React.FC = () => {
     pointSeries.bullets.push(() => {
       const circle = am5.Circle.new(root, {
         radius: 7,
-        tooltipText: "Drag me!",
+        // tooltipText: "Drag me!",
         cursorOverStyle: "pointer",
         tooltipY: 0,
         fill: am5.color(0x005d7a),
         stroke: root.interfaceColors.get("background"),
         strokeWidth: 2,
-        draggable: true,
+        draggable: false,
       });
 
       circle.events.on("dragged", (event: any) => {
@@ -163,7 +166,9 @@ const MapChart: React.FC = () => {
       requestAnimationFrame(rotate);
     };
 
-    rotate();
+    if (!isMobile) {
+      rotate(); // only rotate globe on non-mobile
+    }
 
     return () => {
       root.dispose();
@@ -174,7 +179,10 @@ const MapChart: React.FC = () => {
     <div
       id="chartdiv"
       ref={chartRef}
-      style={{ width: "150vh", height: "150vh" }}
+      style={{
+        width: isMobile ? "100vw" : "150vh",
+        height: isMobile ? "80vh" : "150vh",
+      }}
     />
   );
 };
