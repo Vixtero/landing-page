@@ -114,11 +114,13 @@ function Mission() {
             key={missions[0].id}
             className="col-span-2 max-w-80 border-l-0 border-t-0 border-[#F5F5F5] p-2 text-center md:border-[0.5px] md:p-8"
           >
-            <div
-              className="grid size-12 place-content-center justify-self-center rounded-md"
-              style={{ backgroundColor: missions[0].bgColor }}
-            >
-              {missions[0].icon}
+            <div className="flex w-full items-center justify-center">
+              <div
+                className="flex size-12 w-12 items-center justify-center rounded-md"
+                style={{ backgroundColor: missions[0].bgColor }}
+              >
+                {missions[0].icon}
+              </div>
             </div>
             <h3 className="mt-4 font-semibold">{missions[0].title}</h3>
             <p className="mt-2 text-sm text-[#666666]">
@@ -129,11 +131,13 @@ function Mission() {
             key={missions[1].id}
             className="col-span-2 max-w-80 border-t-0 border-[#F5F5F5] p-2 text-center md:border-[0.5px] md:p-8"
           >
-            <div
-              className="grid size-12 place-content-center justify-self-center rounded-md"
-              style={{ backgroundColor: missions[1].bgColor }}
-            >
-              {missions[1].icon}
+            <div className="flex w-full items-center justify-center">
+              <div
+                className="flex size-12 w-12 items-center justify-center rounded-md"
+                style={{ backgroundColor: missions[1].bgColor }}
+              >
+                {missions[1].icon}
+              </div>
             </div>
             <h3 className="mt-4 font-semibold">{missions[1].title}</h3>
             <p className="mt-2 text-sm text-[#666666]">
@@ -144,11 +148,13 @@ function Mission() {
             key={missions[2].id}
             className="col-span-2 max-w-80 border-r-0 border-t-0 border-[#F5F5F5] p-2 text-center md:border-[0.5px] md:p-8"
           >
-            <div
-              className="grid size-12 place-content-center justify-self-center rounded-md"
-              style={{ backgroundColor: missions[2].bgColor }}
-            >
-              {missions[2].icon}
+            <div className="flex w-full items-center justify-center">
+              <div
+                className="flex size-12 w-12 items-center justify-center rounded-md"
+                style={{ backgroundColor: missions[2].bgColor }}
+              >
+                {missions[2].icon}
+              </div>
             </div>
             <h3 className="mt-4 font-semibold">{missions[2].title}</h3>
             <p className="mt-2 text-sm text-[#666666]">
@@ -156,11 +162,13 @@ function Mission() {
             </p>
           </li>
           <li className="col-span-2 max-w-80 border-b-0 border-l-0 border-[#F5F5F5] p-2 text-center md:col-span-3 md:justify-self-end md:border-[0.5px] md:p-8">
-            <div
-              className="grid size-12 place-content-center justify-self-center rounded-md"
-              style={{ backgroundColor: missions[3].bgColor }}
-            >
-              {missions[3].icon}
+            <div className="flex w-full items-center justify-center">
+              <div
+                className="flex size-12 w-12 items-center justify-center rounded-md"
+                style={{ backgroundColor: missions[3].bgColor }}
+              >
+                {missions[3].icon}
+              </div>
             </div>
             <h3 className="mt-4 font-semibold">{missions[3].title}</h3>
             <p className="mt-2 text-sm text-[#666666]">
@@ -168,11 +176,13 @@ function Mission() {
             </p>
           </li>
           <li className="col-span-2 max-w-80 border-b-0 border-r-0 border-[#F5F5F5] p-2 text-center md:col-span-3 md:justify-self-start md:border-[0.5px] md:p-8">
-            <div
-              className="grid size-12 place-content-center justify-self-center rounded-md"
-              style={{ backgroundColor: missions[4].bgColor }}
-            >
-              {missions[4].icon}
+            <div className="flex w-full items-center justify-center">
+              <div
+                className="flex size-12 w-12 items-center justify-center rounded-md"
+                style={{ backgroundColor: missions[4].bgColor }}
+              >
+                {missions[4].icon}
+              </div>
             </div>
             <h3 className="mt-4 font-semibold">{missions[4].title}</h3>
             <p className="mt-2 text-sm text-[#666666]">
