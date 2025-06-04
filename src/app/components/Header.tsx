@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -16,7 +19,7 @@ export default function Header() {
     { href: "/#home", label: "Home" },
     { href: "/#about-us", label: "About Us" },
     { href: "/#our-products", label: "Our Products" },
-    { href: "/#contact-us", label: "Contact Us" },
+    // { href: "/#contact-us", label: "Contact Us" },
   ];
 
   return (
@@ -46,9 +49,17 @@ export default function Header() {
             </ul>
           </nav>
         </div>
-        <button className="hidden rounded-lg border bg-[#004766] px-4 py-2 text-sm text-white transition duration-300 hover:bg-[#00476695] md:block">
+        <button
+          className="hidden rounded-lg border bg-[#004766] px-4 py-2 text-sm text-white transition duration-300 hover:bg-[#00476695] md:block"
+          onClick={() => {
+            document
+              .getElementById("contact-us")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
           Book a Demo
         </button>
+
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant="outline" className="md:hidden">
@@ -65,22 +76,31 @@ export default function Header() {
               <ul className="space-y-2 font-dongle text-2xl font-light">
                 {navItems.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href}>
-                      <div className="w-full transition duration-300 hover:font-medium">
-                        {item.label}
-                      </div>
-                    </Link>
+                    <SheetClose asChild>
+                      <Link href={item.href}>
+                        <div className="w-full transition duration-300 hover:font-medium">
+                          {item.label}
+                        </div>
+                      </Link>
+                    </SheetClose>
                   </li>
                 ))}
               </ul>
             </nav>
 
-            <Button
-              className="mt-2 w-full bg-[#004766] hover:bg-[#004766] hover:brightness-90"
-              type="submit"
-            >
-              Book a Demo
-            </Button>
+            <SheetClose asChild>
+              <Button
+                className="mt-2 w-full bg-[#004766] hover:bg-[#004766] hover:brightness-90"
+                onClick={() => {
+                  document
+                    .getElementById("contact-us")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                type="submit"
+              >
+                Book a Demo
+              </Button>
+            </SheetClose>
           </SheetContent>
         </Sheet>
       </div>

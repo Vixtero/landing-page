@@ -26,7 +26,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <div className="bg-[#F5FCFF]">
+    <div id="about-us" className="bg-[#F5FCFF]">
       <section className="m-auto mt-16 max-w-7xl gap-4 px-0 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <Image

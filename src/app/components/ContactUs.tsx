@@ -78,7 +78,7 @@ export default function ContactUs() {
   }
 
   return (
-    <section className="p-4 md:p-8">
+    <section id="contact-us" className="p-4 md:p-8">
       <div className="relative h-full overflow-hidden rounded-2xl bg-transparent pb-16 pt-4 md:py-16">
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-2 md:gap-16 md:px-8">
           {/* HEADING */}
@@ -103,7 +103,7 @@ export default function ContactUs() {
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="col-span-2 md:col-span-1">
                       <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input
@@ -120,7 +120,7 @@ export default function ContactUs() {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="col-span-2 md:col-span-1">
                       <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
@@ -173,30 +173,41 @@ export default function ContactUs() {
               </form>
             </Form>
             <div className="w-full">
-              <h4 className="text-xl font-semibold">Contact us</h4>
+              <h4 className="text-base font-semibold md:text-xl">Contact us</h4>
               <ul className="mt-2 space-y-2 md:mt-4">
                 <li className="flex items-center gap-2">
-                  <PhoneCallIcon />
-                  <a href="" className="font-medium underline">
+                  <PhoneCallIcon className="size-5 md:size-6" />
+                  <a
+                    href=""
+                    className="text-sm font-medium underline md:text-base"
+                  >
                     +62 21 2128 2128
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Mail />
-                  <a href="" className="font-medium underline">
+                  <Mail className="size-5 md:size-6" />
+                  <a
+                    href=""
+                    className="text-sm font-medium underline md:text-base"
+                  >
                     solusi@vixtero.com
                   </a>
                 </li>
               </ul>
-              <h4 className="mt-12 text-xl font-semibold">Visit us</h4>
+              <h4 className="mt-8 text-base font-semibold md:mt-12 md:text-xl">
+                Visit us
+              </h4>
               <ul className="mt-2 space-y-2 md:mt-4">
                 <li className="flex items-center gap-2">
-                  <MapPin />
-                  <a href="" className="font-medium underline">
+                  <MapPin className="size-5 md:size-6" />
+                  <a
+                    href=""
+                    className="text-sm font-medium underline md:text-base"
+                  >
                     EightyEight@Kasablanka, Jakarta
                   </a>
                 </li>
-                <li className="text-sm text-[#243D65]">
+                <li className="text-xs text-[#243D65] md:text-sm">
                   EightyEight@Kasablanka 9th Floor - Unit E Jl. Casablanca Raya
                   Kav. 88 Jakarta Selatan, DKI Jakarta - 12870 Indonesia
                 </li>

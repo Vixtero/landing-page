@@ -4,6 +4,7 @@ import VisionMission from "@/app/components/VisionMission";
 import AboutUs from "@/app/components/AboutUs";
 import OurProducts from "@/app/components/OurProducts";
 import ContactUs from "@/app/components/ContactUs";
+import OtherProducts from "@/app/components/OtherProducts";
 
 export default function LandingPage() {
   return (
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <VisionMission />
       <AboutUs />
       <OurProducts />
+      <OtherProducts />
       <ContactUs />
     </>
   );

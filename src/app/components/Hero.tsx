@@ -23,7 +23,14 @@ export default function HeroSection() {
             Empowering businesses to trade across borders without the stress —
             automate compliance, integrate systems, and scale faster.
           </p>
-          <button className="mt-64 flex w-fit gap-2 rounded-md bg-[#005D7A] px-4 py-2 text-white transition duration-300 hover:bg-[#005D7A95] md:mt-8">
+          <button
+            className="mt-64 flex w-fit gap-2 rounded-md bg-[#005D7A] px-4 py-2 text-white transition duration-300 hover:bg-[#005D7A95] md:mt-8"
+            onClick={() => {
+              document
+                .getElementById("vision-mission")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Learn more
             <ChevronDown />
           </button>

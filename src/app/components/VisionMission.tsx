@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function VisionMission() {
   return (
-    <section className="m-auto max-w-7xl px-4 md:px-8">
+    <section id="vision-mission" className="m-auto max-w-7xl px-4 md:px-8">
       <Vision />
       <Mission />
     </section>

@@ -1,11 +1,15 @@
+"use client";
+
 import Image from "next/image";
-import ContactUs from "../components/ContactUs";
+import ContactUs from "@/app/components/ContactUs";
+import OtherProducts from "@/app/components/OtherProducts";
 
 export default function Page() {
   return (
     <>
       <Hero />
       <Features />
+      <OtherProducts />
       <ContactUs />
     </>
   );
@@ -13,7 +17,7 @@ export default function Page() {
 
 function Hero() {
   return (
-    <section className="bg-white px-3 py-12 text-center sm:px-6">
+    <section id="hero" className="bg-white px-3 py-12 text-center sm:px-6">
       <div className="mx-auto max-w-7xl items-center gap-8 md:flex">
         <div className="flex-1">
           <div className="flex w-fit items-center gap-1 place-self-center rounded-full p-[2px] pr-2 text-xs text-[#006B99] shadow md:place-self-start">
@@ -33,12 +37,26 @@ function Hero() {
           </p>
         </div>
         <div className="mt-8 flex flex-col items-center justify-center md:mt-0">
-          <button className="rounded-lg bg-gradient-to-r from-[#99E1FF] via-[#E5F8FF] to-[#CCF0FF] px-4 py-2 font-semibold text-[#006B99] md:p-4">
+          <button
+            className="rounded-lg bg-gradient-to-r from-[#99E1FF] via-[#E5F8FF] to-[#CCF0FF] px-4 py-2 font-semibold text-[#006B99] md:p-4"
+            onClick={() => {
+              document
+                .getElementById("contact-us")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Request a Demo
           </button>
-          <div className="mt-2 cursor-pointer text-base text-[#006B99]">
+          <button
+            className="mt-2 cursor-pointer text-base text-[#006B99]"
+            onClick={() => {
+              document
+                .getElementById("other-products")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             See other products ▾
-          </div>
+          </button>
         </div>
       </div>
 
