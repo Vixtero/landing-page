@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useEffect, useState } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import * as am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
@@ -11,10 +11,28 @@ const isMobile =
 
 const MapChart: React.FC = () => {
   const chartRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useLayoutEffect(() => {
+  // Add intersection observer to only render when visible
+  useEffect(() => {
     if (!chartRef.current) return;
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(chartRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!chartRef.current || !isVisible) return;
+
+    setIsLoading(true);
     const root = am5.Root.new(chartRef.current);
 
     root.setThemes([am5themes_Animated.new(root)]);
@@ -156,24 +174,32 @@ const MapChart: React.FC = () => {
     });
 
     chart.appear(1000, 100);
+    setIsLoading(false);
 
-    // Auto rotate the globe on X axis
-    let currentRotationX = chart.get("rotationX") || 0;
+    // Optimize animations for mobile
+    if (!isMobile) {
+      let currentRotationX = chart.get("rotationX") || 0;
+      let animationFrameId: number;
 
-    const rotate = () => {
-      currentRotationX += 0.025; // Adjust speed as needed
-      chart.set("rotationX", currentRotationX);
-      requestAnimationFrame(rotate);
-    };
+      const rotate = () => {
+        currentRotationX += 0.025;
+        chart.set("rotationX", currentRotationX);
+        animationFrameId = requestAnimationFrame(rotate);
+      };
 
-    // if (!isMobile) {
-    rotate(); // only rotate globe on non-mobile
-    // }
+      rotate();
 
-    return () => {
-      root.dispose();
-    };
-  }, []);
+      // Cleanup animation frame
+      return () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+        }
+        root.dispose();
+      };
+    }
+
+    return () => root.dispose();
+  }, [isVisible]); // Only re-run when visibility changes
 
   return (
     <div
@@ -182,8 +208,29 @@ const MapChart: React.FC = () => {
       style={{
         width: "150vh",
         height: "150vh",
+        // maxWidth: "100vw",
+        // maxHeight: "100vh",
+        position: "relative",
       }}
-    />
+    >
+      {isLoading && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+          }}
+        >
+          Loading map...
+        </div>
+      )}
+    </div>
   );
 };
 
