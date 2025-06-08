@@ -23,17 +23,20 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-10 border-b border-[#F2F2F2] bg-white">
+    <header className="sticky top-0 z-10 border-b border-[#F2F2F2] bg-white py-2">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 pt-2 xl:px-0">
         <div className="flex items-center gap-4">
-          <Image
-            src="/logo.png"
-            alt="VIXTERO Logo"
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="h-[60px] w-auto hover:cursor-pointer"
-          />
+          <div className="flex items-center gap-1">
+            <Image
+              src="/img/vixtero-logo-only.png"
+              alt="VIXTERO Logo"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="h-[32px] w-auto hover:cursor-pointer"
+            />
+            <p className="font-days_one">VIXTERO</p>
+          </div>
           <nav>
             <ul className="hidden font-dongle text-2xl font-light md:flex">
               {navItems.map((item) => (
