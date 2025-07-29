@@ -186,13 +186,15 @@ export function NavigationMenuDemo() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/#about-us" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              About Us
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+        {isRoot ? (
+          <NavigationMenuItem>
+            <Link href="/#about-us" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                About Us
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        ) : null}
         <NavigationMenuItem>
           <NavigationMenuTrigger>
             {isRoot ? "Our Products" : "Other Products"}

@@ -235,12 +235,14 @@ function LatestProduct() {
 
         {/* Right Image */}
         <div className="flex justify-center">
-          <Image
-            src="/img/vixborder-at-landing.png" // Replace with actual image path later
-            alt="VIX Border Hero"
-            width={600}
-            height={400}
-          />
+          <div className="relative aspect-[3/2] w-full max-w-[600px]">
+            <Image
+              src="/img/vixtero/vixborder-product.png"
+              alt="VIX Border Hero"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
       </div>
       <div className="mt-4 flex max-w-7xl flex-col gap-4 px-4 md:flex-row">
